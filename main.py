@@ -1,6 +1,10 @@
+# Python libraries
 from flask import Flask, render_template, request, redirect
 import os
+
+# Custom functions
 from app.parser import extract_text_from_docx, extract_text_from_pdf
+from app.extractors import extract_email, extract_phone, extract_name, extract_skills
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
@@ -25,7 +29,14 @@ def upload():
     else:
         return "Unsupported file type.", 400
     
-    return render_template("result.html", text=extracted_text)
+    email = extract_email(extracted_text)
+    phone = extract_phone(extracted_text)
+    name = extract_name(extracted_text)
+
+    common_skills = ["Python", "Java", "SQL", "JavaScript", "C++", "React", "Django"]
+    skills = extract_skills(extracted_text, common_skills)
+    
+    return render_template("result.html", text=extracted_text, email=email, phone=phone, name=name, skills=skills)
 
 if __name__ == "__main__":
     app.run(debug=True)
