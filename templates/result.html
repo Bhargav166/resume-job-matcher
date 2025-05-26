@@ -1,17 +1,19 @@
 <!doctype html>
 <html>
-  <head><title>Extracted Resume Text</title></head>
+  <head>
+    <title>Extracted Resume Text</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
   <body>
     <h2>Extracted Resume Text:</h2>
-<pre>{{ text }}</pre>
+    <pre>{{ text }}</pre>
 
-<h2>Extracted Info:</h2>
-<ul>
-  <li><strong>Name:</strong> {{ name }}</li>
-  <li><strong>Email:</strong> {{ email }}</li>
-  <li><strong>Phone:</strong> {{ phone }}</li>
-  <li><strong>Skills:</strong> {{ skills | join(', ') }}</li>
-</ul>
-
+    <h2>Extracted Info:</h2>
+    <ul>
+      <li><strong>Name:</strong> {{ name }}</li>
+      <li><strong>Email:</strong> {{ email }}</li>
+      <li><strong>Phone:</strong> {{ phone }}</li>
+      <li><strong>Skills:</strong> {{ skills | join(', ') }}</li>
+    </ul>
   </body>
 </html>
